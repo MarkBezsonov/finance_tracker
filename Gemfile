@@ -24,6 +24,8 @@ gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
 # For API processing
 gem 'iex-ruby-client'
+# Font-awesome
+gem 'font-awesome-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
