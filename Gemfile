@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.7'
 # For signup, login, and logout advanced features
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
+# For API processing
+gem 'iex-ruby-client'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
