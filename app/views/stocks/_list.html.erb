@@ -20,12 +20,12 @@
                                                 class: "btn btn-xs btn-success", method: :post %>
                 <% elsif current_user.id != @user.id %>
                   <span class="badge badge-secondary">
-                    You are already tracking
+                    Already Tracking
                     <% if !current_user.under_stock_limit? %>
-                      10 stocks
+                      10 Stocks
                     <% end %>
                     <% if current_user.stock_already_tracked?(stock.ticker) %>
-                      this stock
+                      This Stock
                     <% end %>
                   </span>
                 <% end %>
