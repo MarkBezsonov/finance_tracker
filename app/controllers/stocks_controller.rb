@@ -21,6 +21,6 @@ class StocksController < ApplicationController
   end
 
   def show
-    
+    @stock = Stock.new_lookup(params[:stock])
   end
 end
