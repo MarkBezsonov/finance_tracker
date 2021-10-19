@@ -21,6 +21,10 @@ class StocksController < ApplicationController
   end
 
   def show
-    @stock = Stock.new_lookup(params[:stock])
+    @stock = Stock.find(params[:id])
+    respond_to do |format|
+      format.html { render(:text => "not implemented") }
+      format.js {render partial: 'stocks/stock'}
+    end
   end
 end

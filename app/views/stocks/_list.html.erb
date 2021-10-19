@@ -13,7 +13,7 @@
         <% @tracked_stocks.each do |stock| %>
           <tr>
             <th scope="row"><%= stock.ticker %></th>
-            <td><%= link_to stock.name, stock_path(stock) %></td>
+            <td><%= link_to stock.name, stock_path(stock.id) %></td>
             <td><%= stock.last_price.to_f.truncate(2) %></td>
             <td><% if current_user.can_track_stock?(stock.ticker.upcase) %>
                   <%= link_to 'Add to Portfolio', user_stocks_path(user: current_user, ticker: stock.ticker.upcase),
@@ -22,7 +22,7 @@
                   <span class="badge badge-secondary">
                     <% if !current_user.under_stock_limit? %>
                       You Are Already Tracking 10 Stocks
-                    <% elsif current_user.stock_already_tracked?(stock.ticker) %>
+                    <% elsif current_user.stock_already_tracked?(ticker: stock.ticker) %>
                       You Are Already Tracking This Stock
                     <% end %>
                   </span>
