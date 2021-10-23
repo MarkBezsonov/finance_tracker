@@ -5,12 +5,12 @@
     <tbody>
       <tr>
         <td><strong>Name: </strong> <%= @user.full_name %></td>
-        <td><strong>Email: </strong> <%= @user.email %></td>
+        <td><strong class="ml-4">Email: </strong> <%= @user.email %></td>
         <td>
           <% if current_user.not_friends_with?(@user.id) %> 
-            <%= link_to 'Add to Friends List', friendships_path(friend: @user), class: "btn btn-xs btn-success", method: :post %>
+            <%= link_to 'Add to Friends List', friendships_path(friend: @user), class: "btn btn-xs btn-success ml-4", method: :post %>
           <% else %>
-            <span class="badge badge-secondary">
+            <span class="badge badge-secondary ml-4">
               In Friends List
             </span>
           <% end %>

@@ -28,7 +28,7 @@
           <li class="nav-item user-name">
             <%= fa_icon 'user' %> <%= current_user.full_name %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ml-2">
             <%= link_to("Logout", destroy_user_session_path,
             class: 'btn btn-xs btn-danger logout-button', method: :delete) %>
           </li>

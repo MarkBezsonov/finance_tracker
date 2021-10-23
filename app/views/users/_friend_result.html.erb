@@ -9,8 +9,8 @@
         <% @friends.each do |friend| %>
           <tr>
             <td><strong>Name: </strong> <%= friend.full_name %></td>
-            <td><strong>Email: </strong> <%= friend.email %></td>
-            <td><strong>Actions: </strong> <%= link_to 'View Profile', user_path(friend), class: "btn btn-xs btn-success" %>
+            <td><strong class="ml-4">Email: </strong> <%= friend.email %></td>
+            <td><%= link_to 'View Profile', user_path(friend), class: "btn btn-xs btn-success ml-4" %>
               <% if current_user.not_friends_with?(friend.id) %> 
                 <%= link_to 'Add to Friends List', friendships_path(friend: friend), class: "btn btn-xs btn-success", method: :post %>
               <% else %>
