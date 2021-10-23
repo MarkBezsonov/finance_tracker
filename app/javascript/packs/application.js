@@ -8,6 +8,8 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
+import Chart from 'chart.js/auto'
+global.Chart = Chart
 
 Rails.start()
 Turbolinks.start()

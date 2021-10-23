@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <%= link_to 'FinanceTracker', root_path, class: 'navbar-brand' %>
     <% if current_user %>
@@ -33,10 +33,6 @@
             class: 'btn btn-xs btn-danger logout-button', method: :delete) %>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
       </div>
     <% end %>
   </div>

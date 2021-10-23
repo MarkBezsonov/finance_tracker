@@ -6,12 +6,14 @@ class Stock < ApplicationRecord
 
   before_save {self.ticker = ticker.upcase}
 
-  @@iex_client = IEX::Api::Client.new(publishable_token: Rails.application.credentials.iex_client[:sandbox_api_publishable_key],
-                                      secret_token: Rails.application.credentials.iex_client[:sandbox_api_secret_key],
-                                      endpoint: 'https://sandbox.iexapis.com/v1')
+  def self.iex_client
+    IEX::Api::Client.new(publishable_token: Rails.application.credentials.iex_client[:sandbox_api_publishable_key],
+                        secret_token: Rails.application.credentials.iex_client[:sandbox_api_secret_key],
+                        endpoint: 'https://sandbox.iexapis.com/v1')
+  end
 
   def self.new_lookup(ticker)
-    client = @@iex_client
+    client = self.iex_client
     begin                              
       new(ticker: ticker, name: client.company(ticker).company_name, last_price: client.price(ticker))
     rescue => exception

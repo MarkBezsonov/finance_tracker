@@ -1,4 +1,164 @@
 <h1><%= @stock.ticker %></h1>
 <h3><%= @stock.name %></h3>
-<h3><%= @stock.last_price %></h3>
-<%= link_to "Back to My Portfolio", my_portfolio_path %>
+<h3 class="mb-4">$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></h3>
+
+<canvas id="myChart" class="col-sm-9 mb-4" width="200px" height="100px" data-labels="<%= @data_keys %>" data-data="<%= @data_values %>" ></canvas>
+
+<script>
+document.addEventListener('turbolinks:load', () => {
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: JSON.parse(ctx.canvas.dataset.labels),
+      datasets: [{
+        data: JSON.parse(ctx.canvas.dataset.data),
+        backgroundColor: ['rgba(46, 204, 113, 1)'],
+        borderColor: ['rgba(0, 0, 0, 1)'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+})
+</script>
+
+<table class="table col-sm-9 mb-4">
+  <thead>
+    <h6 class="text-center col-sm-9 mb-4">Trade Information</h6>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">1D</th>
+      <th scope="col">1W</th>
+      <th scope="col">1M</th>
+      <th scope="col">3M</th>
+      <th scope="col">6M</th>
+      <th scope="col">1Y</th>
+      <th scope="col">5Y</th>
+      <th scope="col">TD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Open Price</th>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+    </tr>
+    <tr>
+      <th scope="row">High Price</th>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+    </tr>
+    <tr>
+      <th scope="row mb-4">Close Price</th>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+    </tr>
+    <tr>
+      <th scope="row mb-4">Low Price</th>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+      <td>$<%= Stock.iex_client.price(@stock.ticker).truncate(2) %></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table col-sm-9 mb-4">
+  <tbody class="col-sm-9">
+    <h6 class="text-center col-sm-9 mb-4">Company Information</h6>
+    <tr>
+      <th scope="row">CEO</th>
+      <td><%= @company.ceo %></td>
+    </tr>
+    <tr>
+      <th scope="row">Name</th>
+      <td><%= @company.company_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Description</th>
+      <% if !@company.description.empty? %>
+        <td><%= @company.description %></td>
+      <% else %>
+        <td>N/A</td>
+      <% end %>
+    </tr>
+    <tr>
+      <th scope="row">Employee Count</th>
+      <td><%= @company.employees %></td>
+    </tr>
+    <tr>
+      <th scope="row">Exchange</th>
+      <td><%= @company.exchange %></td>
+    </tr>
+    <tr>
+      <th scope="row">Industry</th>
+      <td><%= @company.industry %></td>
+    </tr>
+    <tr>
+      <th scope="row">Issue Type</th>
+      <td><%= @company.issue_type %></td>
+    </tr>
+    <tr>
+      <th scope="row">Sector</th>
+      <td><%= @company.sector %></td>
+    </tr>
+    <tr>
+      <th scope="row">Security Name</th>
+      <td><%= @company.security_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Symbol</th>
+      <td><%= @company.symbol %></td>
+    </tr>
+    <tr>
+      <th scope="row">Tags</th>
+      <td><% @company.tags.each do |tag| %>
+            <div><%= tag %></div>
+          <% end %></td>
+    </tr>
+    <tr>
+      <th scope="row">Website</th>
+      <td><%= link_to @company.website, 'http://#{@company.website}' %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 text-center mb-4">
+      <%= link_to "My Portfolio", my_portfolio_path, class: "btn btn-xs btn-success" %>
+      <%= link_to 'Remove Stock', user_stock_path(@stock.id), method: :delete, 
+      data: {confirm: 'Are you sure?'}, class: 'btn btn-xs btn-warning' %>
+    </div>
+  </div>    
+</div>
+

@@ -26,6 +26,10 @@ gem 'devise-bootstrap-views', '~> 1.0'
 gem 'iex-ruby-client'
 # Font-awesome
 gem 'font-awesome-rails'
+# For charts
+gem 'chartkick'
+# jQuery
+gem 'jquery-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

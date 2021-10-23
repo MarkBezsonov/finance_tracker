@@ -1,2 +1,13 @@
-<h1>Welcome to the Finance Tracker App</h1>
-<p>This is the home page.</p>
+<div class="container" id="home-container">
+  <div class="jumbotron text-center">
+    <h1 class="display-4">Finance Tracker</h1>
+    <p class="lead">A stock tracking application powered by the IEX Cloud Ruby on Rails client sandbox mode.</p>
+    <%= image_tag ("stock_image.jpg"), class: "col-sm-9" %>
+    <hr class="my-4">
+    <p>Please note that the values used are scrambled and hence incoherent from real values. This site is purely for demonstration purposes.</p>
+    <p class="lead">
+      <%= link_to "My Portfolio", my_portfolio_path, class: "btn btn-xs btn-success" %>
+      <%= link_to "My Friends", my_friends_path, class: "btn btn-xs btn-success" %>
+    </p>
+  </div>
+</div>

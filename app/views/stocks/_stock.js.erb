@@ -1,1 +1,1 @@
-document.querySelector('#stocks').innerHTML = '<%= j render 'stocks/stock.html', locals: { stock: @stock } %>'
+document.querySelector('#stocks').innerHTML = '<%= j render 'stocks/stock.html', locals: {stock: @stock, client: @client, company: @company, data_keys: @data_keys, data_values: @data_values} %>'

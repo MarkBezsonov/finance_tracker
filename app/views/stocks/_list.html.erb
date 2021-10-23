@@ -14,7 +14,7 @@
           <tr>
             <th scope="row"><%= stock.ticker %></th>
             <td><%= link_to stock.name, stock_path(stock.id) %></td>
-            <td><%= stock.last_price.to_f.truncate(2) %></td>
+            <td>$<%= Stock.iex_client.price(stock.ticker).truncate(2) %></td>
             <td><% if current_user.can_track_stock?(stock.ticker.upcase) %>
                   <%= link_to 'Add to Portfolio', user_stocks_path(user: current_user, ticker: stock.ticker.upcase),
                                                 class: "btn btn-xs btn-success", method: :post %>
