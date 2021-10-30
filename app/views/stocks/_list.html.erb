@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-9">
+  <div class="col-9">  
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
@@ -22,7 +22,7 @@
                   <span class="badge badge-secondary">
                     <% if !current_user.under_stock_limit? %>
                       You Are Already Tracking 10 Stocks
-                    <% elsif current_user.stock_already_tracked?(ticker: stock.ticker) %>
+                    <% elsif current_user.stock_already_tracked?(stock.ticker) %>
                       You Are Already Tracking This Stock
                     <% end %>
                   </span>

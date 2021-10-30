@@ -156,8 +156,13 @@ document.addEventListener('turbolinks:load', () => {
   <div class="row">
     <div class="col-sm-9 text-center mb-4">
       <%= link_to "My Portfolio", my_portfolio_path, class: "btn btn-xs btn-success" %>
-      <%= link_to 'Remove Stock', user_stock_path(@stock.id), method: :delete, 
-      data: {confirm: 'Are you sure?'}, class: 'btn btn-xs btn-warning' %>
+      <% if @user.stocks.include?(@stock) %>
+        <%= link_to 'Remove Stock', user_stock_path(@stock.id), method: :delete, 
+        data: {confirm: 'Are you sure?'}, class: 'btn btn-xs btn-warning' %>
+      <% else %>
+        <%= link_to 'Add to Portfolio', user_stocks_path(user: current_user, ticker: @stock.ticker.upcase),
+        class: "btn btn-xs btn-success", method: :post %>
+      <% end %>
     </div>
   </div>    
 </div>

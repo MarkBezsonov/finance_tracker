@@ -21,6 +21,7 @@ class StocksController < ApplicationController
   end
 
   def show
+    @user = current_user
     @stock = Stock.find(params[:id])
     @client = Stock.iex_client
     @company = @client.company(@stock.ticker)

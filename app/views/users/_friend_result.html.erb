@@ -14,7 +14,7 @@
               <% if current_user.not_friends_with?(friend.id) %> 
                 <%= link_to 'Add to Friends List', friendships_path(friend: friend), class: "btn btn-xs btn-success", method: :post %>
               <% else %>
-                <span class="badge badge-secondary">
+                <span class="badge badge-secondary ml-4">
                   In Friends List
                 </span>
               <% end %>
